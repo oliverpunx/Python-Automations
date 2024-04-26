@@ -43,12 +43,12 @@ nomMes=current_date_format(now,'mes')
 
 nomarchivoLog='copyRMAN_'+dia+mes+anio+'.log'
 
-origen='//192.168.2.126/respaldos/respaldos_RMAN/'
-destino='//192.168.2.122/e$/respaldos/'+anio+'/Oracle/RMAN/'+ nomMes +'/'+ dia+'/'
+origen='//pc-origen/respaldos/'
+destino='//pc-destino/e$/respaldos/'+anio+'/'+ nomMes +'/'+ dia+'/'
 
 #lista los archivos a copiar de la carpeta origen
 contenidos=os.listdir(origen)
-registraLog=create_log('C:/resources_mlopez/logs/copiaDMP'+ dia + mes + anio +'.log')
+registraLog=create_log('C:/backups/logs/copiaDMP'+ dia + mes + anio +'.log')
 registraLog.debug('Iniciando copia de archivos backup RMAN....')
 
 for elemento in contenidos:
