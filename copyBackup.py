@@ -46,11 +46,11 @@ dia=str(current_date_format(now,'dia'))
 anio=str(current_date_format(now,'anio'))
 mes=str(current_date_format(now,'nummes'))
 nomMes=current_date_format(now,'mes')    
-raiz='//192.168.2.122/e$/respaldos/'+anio+'/'
+raiz='//pc-destino/e$/respaldos/'+anio+'/'
 nomarchivo='fullexport_'+dia+mes+anio+'013000.dmp'
 
 try:
-    ruta='Oracle/DUMP/'
+    ruta='/DUMP/'
     #ruta donde se grabará el respaldo
     print(raiz+ruta+nomMes)    
     #nombre del archivo que se copiará
@@ -60,11 +60,11 @@ try:
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     
     #iniciando archivo de log
-    registraLog=create_log('C:/resources_mlopez/logs/copiaDMP'+ dia + mes + anio +'.log')
+    registraLog=create_log('C:/backups/logs/copiaDMP'+ dia + mes + anio +'.log')
     registraLog.debug('Conectando al servidor....')
 
     #conexion al servidor donde está el respaldo
-    ssh.connect(hostname='192.168.2.126',username='root',password='ToqhSA*eJc')
+    ssh.connect(hostname='host',username='usuario',password='clave')
     registraLog.info('Conexion exitosa....')
 
 except Exception as error:
