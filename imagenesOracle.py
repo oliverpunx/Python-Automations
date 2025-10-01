@@ -2,12 +2,12 @@ import cx_Oracle
 import os
 
 # Configuración de conexión
-username = "libra"
-password = "aRkkL9a0QWVQ"
-dsn = "10.1.2.3/libra"  # Cambia por tu cadena de conexión Oracle
+username = "miusuario"
+password = "mipass"
+dsn = "ip-host/servicio"  # Cambia por tu cadena de conexión Oracle
 
 # Carpeta destino
-output_dir = "imagenes_activos"
+output_dir = "imagenes"
 os.makedirs(output_dir, exist_ok=True)
 
 try:
@@ -16,10 +16,8 @@ try:
     cursor = connection.cursor()
 
     # Consulta de imágenes
-    sql = '''select a.codigo ID,rpad(rtrim(ltrim(substr(a.descripcion,1,5))),5,'Z') NOMBRE,'png' tipo,b.imagen IMAGEN_BLOB
-  from inmovilizado a,IMA_INMOVILIZADO b
- where a.empresa=b.empresa and a.codigo=b.codigo 
-  and b.imagen is not null'''
+    sql = '''select  ID, NOMBRE,'png' tipo, IMAGEN_BLOB
+  from mitabla'''
     cursor.execute(sql)
 
     for row in cursor:
@@ -45,6 +43,8 @@ try:
 
         print(f"✅ Imagen guardada: {filepath}")
 
+print(f"✅ DESCARGA TOTAL FINALIZADA CON EXITO EN: {filepath}")
+
 except cx_Oracle.DatabaseError as e:
     print("❌ Error de base de datos:", e)
 
@@ -55,3 +55,4 @@ finally:
         connection.close()
     except:
         pass
+
